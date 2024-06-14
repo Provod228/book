@@ -14,8 +14,4 @@
 </ul>
 <p>Количество посещений сайта - {{ num_visits }}</p>
 
-<form method="post" action="{% url 'logout' %}">
-    {% csrf_token %}
-    <button type="submit">Выйти</button>
-</form>
 {% endblock %}
