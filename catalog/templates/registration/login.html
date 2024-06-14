@@ -1,40 +1,32 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-
-{% if form.errors %}
+  {% if form.errors %}
     <p>Ваши имя пользователя и пароль не совпали. Пожалуйста, попробуйте ещё раз.</p>
-
-{% endif %}
-
-{% if next %}
+  {% endif %}
+  {% if next %}
     {% if user.is_authenticated %}
-        <p> Вы не имеите доступ к этой странице. Войдите в сисему с другими параметрами.</p>
-
+      <p> Вы не имеете доступ к этой странице. Войдите в систему с другими параметрами.</p>
     {% else %}
-        <p>Войдити в систему, чтобы увидеть эту страницу.</p>
+      <p>Войдите в систему, чтобы увидеть эту страницу.</p>
     {% endif %}
-{% endif %}
+  {% endif %}
 
-<form method="post" action="{% url 'login' %}">
+  <form method="post" action="{% url 'login' %}">
     {% csrf_token %}
+    <table>
+      <tr>
+        <td>{{ form.username.label_tag }}</td>
+        <td>{{ form.username }}</td>
+      </tr>
+      <tr>
+        <td>{{ form.password.label_tag }}</td>
+        <td>{{ form.password }}</td>
+      </tr>
+    </table>
+    <input type="submit" value="Вход" />
+    <input type="hidden" name="next" value="{{ next }}" />
+  </form>
 
-<table>
-<tr>
-    <td>{{ form.username.label_tag }}</td>
-    <td>{{ form.username }}</td>
-</tr>
-
-<tr>
-    <td>{{ form.password.label_tag }}</td>
-    <td>{{ form.password }}</td>
-</tr>
-</table>
-
-<input type="submit" value="Вход" />
-<input type="hidden" name="next" value="{{ next }}" />
-</form>
-
-<p><a href="{% url 'password_reset' %}">Утерян пароль?</a></p>
-
+  <p><a href="{% url 'password_reset' %}">Утерян пароль?</a></p>
 {% endblock %}
