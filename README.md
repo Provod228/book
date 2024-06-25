@@ -13,9 +13,10 @@ https://www.python.org/
 pip install virtualenv
 virtualenv --help
 ```
-3) Установить или обновите Django до последней версии.
+3) Установить или обновите Django до последней версии и установите нужные библиотеки.
 ```
 python -m pip install Django
+pip install djangorestframework
 ```
 4) Скачайте с GitHub все файлы и поместите на одном уровне с файлом venv, перед этим утвердитесь, что все "book-main" переминованы в "WebBooks".
 5) Запуск проекта:
