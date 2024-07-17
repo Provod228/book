@@ -21,7 +21,7 @@
             <div class="col-sm-2">
             {% block sidebar %}
             <ul class="sidebar-nav">
-                <li><a href="{% url 'index' %}">Главная страница</a></li>
+                <li><a href="{% url 'catalog:index' %}">Главная страница</a></li>
                 <li><a href="{% url 'catalog:books' %}">Все книги</a></li>
                 <li><a href="{% url 'catalog:authors' %}">Все авторы</a></li>
                 {% if user.is_authenticated %}
