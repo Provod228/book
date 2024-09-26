@@ -1,28 +1,30 @@
-import pytest
 import requests
-import catalog.models as model
 '''Тестировать при запуске сайта'''
 
 
-def test_index(test_url) -> None:
-    url = test_url + 'catalog/'
-    response = str(requests.get(url))
-    assert response == '<Response [200]>'
+def test_url_index(main_url) -> None:
+    url = main_url + 'catalog/'
+    response = requests.get(url)
+    assert response.status_code == 200
 
 
-def test_books(test_url) -> None:
-    url = test_url + 'catalog/books/'
-    response = str(requests.get(url))
-    assert response == '<Response [200]>'
+def test_url_books(main_url) -> None:
+    url = main_url + 'catalog/books/'
+    response = requests.get(url)
+    assert response.status_code == 200
 
 
-def test_authors(test_url) -> None:
-    url = test_url + 'catalog/authors/'
-    response = str(requests.get(url))
-    assert response == '<Response [200]>'
+def test_url_authors(main_url) -> None:
+    url = main_url + 'catalog/authors/'
+    response = requests.get(url)
+    assert response.status_code == 200
 
 
-def test_login(test_url) -> None:
-    url = test_url + 'catalog/accounts/login/'
-    response = str(requests.get(url))
-    assert response == '<Response [200]>'
+def test_url_login(main_url) -> None:
+    url = main_url + 'catalog/accounts/login/'
+    response = requests.get(url)
+    assert response.status_code == 200
+
+
+def test_book_ids(session_db):
+    assert session_db[0] != session_db[1]

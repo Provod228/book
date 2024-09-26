@@ -12,7 +12,7 @@ class index(APIView):
     template_name = 'index.html'
 
     def get(self, request):
-        num_books = Book.objects.all().count()
+        num_books = Book.objects.all()
         num_instance = BookInstance.objects.all().count()
         num_instance_available = BookInstance.objects.filter(status__exact=2).count()
         num_author = Author.objects.count()
