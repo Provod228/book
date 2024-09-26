@@ -26,3 +26,8 @@ def test_login(test_url) -> None:
     url = test_url + 'catalog/accounts/login/'
     response = str(requests.get(url))
     assert response == '<Response [200]>'
+
+
+def test_book_ids(session_db):
+    assert session_db[0] != session_db[1]
+
