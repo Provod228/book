@@ -6,10 +6,12 @@
 
 <h2>Динамический контент</h2>
 <p>База данных сайта Мир книг содержит следующ количество записей</p>
-<ul>
-    <li><strong>Количество книг:</strong> {{ num_books }}</li>
-    <li><strong>Количество экземпляров книг:</strong> {{ num_instance }}</li>
-    <li><strong>Количество экземпляров книг в заказе:</strong> {{ num_instance_available }}</li>
-    <li><strong>Количество авторов книги:</strong> {{ num_author }}</li>
-</ul>
+    {% if counts_db %}
+        <ul>
+            <li><strong>Количество книг:</strong> {{ counts_db.num_books }}</li>
+            <li><strong>Количество экземпляров книг:</strong> {{ counts_db.num_instance }}</li>
+            <li><strong>Количество экземпляров книг в заказе:</strong> {{ counts_db.num_instance_available }}</li>
+            <li><strong>Количество авторов книги:</strong> {{ counts_db.num_author }}</li>
+        </ul>
+    {% endif %}
 {% endblock %}

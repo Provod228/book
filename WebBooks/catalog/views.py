@@ -17,12 +17,13 @@ class index(APIView):
         num_instance = BookInstance.objects.all().count()
         num_instance_available = BookInstance.objects.filter(status__exact=2).count()
         num_author = Author.objects.count()
-        return Response({
+        counts_db = {
                         'num_books': num_books,
-                        'num_instance': num_books,
-                        'num_instance_available': num_books,
-                        'num_author': num_books,
-                        })
+                        'num_instance': num_instance,
+                        'num_instance_available': num_instance_available,
+                        'num_author': num_author,
+                        }
+        return Response({'counts_db': counts_db})
 
 
 class BookListView(APIView):
