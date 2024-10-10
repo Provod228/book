@@ -2,14 +2,34 @@ from rest_framework import serializers
 from .models import Book, Author
 
 
-# class IndexSerializers(serializers.Serializer):
-#     counts_db = serializers.()
+class IndexSerializer(serializers.Serializer):
+    num_books = serializers.IntegerField()
+    num_instance = serializers.IntegerField()
+    num_instance_available = serializers.IntegerField()
+    num_author = serializers.IntegerField()
+
+
+class BookDetailSerializers(serializers.Serializer):
+    class Meta:
+        model = Book
+        fields = ('book.genre', 'book.summary')
+    # title = serializers.CharField()
+    # genre = serializers.CharField()
+    # summary = serializers.CharField()
+    # isbn = serializers.CharField()
+    # language = serializers.CharField()
+    # first_name = serializers.CharField()
+    # last_name = serializers.CharField()
+    # display = serializers.CharField()
+    # imprint = serializers.CharField()
+    # id_bookinstance_set = serializers.IntegerField()
+    # status = serializers.CharField()
 
 
 class BookListSerializers(serializers.Serializer):
+    id = serializers.IntegerField()
     title = serializers.CharField()
     genre = serializers.CharField()
-    id = serializers.IntegerField()
 
 
 class AuthorListSerializers(serializers.Serializer):

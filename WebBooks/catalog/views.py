@@ -2,7 +2,7 @@ from .models import Book, Author, BookInstance
 from rest_framework.renderers import TemplateHTMLRenderer
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from .serializers import BookListSerializers, AuthorListSerializers
+from .serializers import *
 
 
 # Create your views here.
@@ -13,17 +13,20 @@ class index(APIView):
     template_name = 'index.html'
 
     def get(self, request):
-        num_books = Book.objects.all().count()
-        num_instance = BookInstance.objects.all().count()
+        num_books = Book.objects.count()
+        num_instance = BookInstance.objects.count()
         num_instance_available = BookInstance.objects.filter(status__exact=2).count()
         num_author = Author.objects.count()
-        counts_db = {
-                        'num_books': num_books,
-                        'num_instance': num_instance,
-                        'num_instance_available': num_instance_available,
-                        'num_author': num_author,
-                        }
-        return Response({'counts_db': counts_db})
+        counts_models = {
+            'num_books': num_books,
+            'num_instance': num_instance,
+            'num_instance_available': num_instance_available,
+            'num_author': num_author,
+        }
+        serializer = IndexSerializer(data=counts_models)
+        if serializer.is_valid():
+            return Response(serializer.data)
+        return Response(serializer.errors, status=400)
 
 
 class BookListView(APIView):
@@ -41,6 +44,7 @@ class BookDetailView(APIView):
 
     def get(self, request, id):
         book = Book.objects.get(pk=id)
+        print(book)
         return Response({'book': book})
 
 
