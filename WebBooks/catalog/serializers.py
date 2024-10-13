@@ -10,20 +10,29 @@ class IndexSerializer(serializers.Serializer):
 
 
 class BookDetailSerializers(serializers.Serializer):
-    class Meta:
-        model = Book
-        fields = ('book.genre', 'book.summary')
-    # title = serializers.CharField()
-    # genre = serializers.CharField()
-    # summary = serializers.CharField()
-    # isbn = serializers.CharField()
-    # language = serializers.CharField()
+    title = serializers.CharField()
+    genre = serializers.CharField()
+    summary = serializers.CharField()
+    isbn = serializers.CharField()
+    language = serializers.CharField()
     # first_name = serializers.CharField()
     # last_name = serializers.CharField()
     # display = serializers.CharField()
     # imprint = serializers.CharField()
     # id_bookinstance_set = serializers.IntegerField()
     # status = serializers.CharField()
+
+
+class BookAuthorDetailSerializers(serializers.Serializer):
+    first_name = serializers.CharField()
+    last_name = serializers.CharField()
+
+
+class BookInstanceDetailSerializers(serializers.Serializer):
+    status_display = serializers.DjangoModelField()
+    imprint = serializers.CharField()
+    id = serializers.IntegerField()
+    status = serializers.CharField()
 
 
 class BookListSerializers(serializers.Serializer):
