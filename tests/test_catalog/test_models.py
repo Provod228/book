@@ -1,11 +1,12 @@
 import pytest
-import requests
 from catalog.models import *
 import datetime
 
 
 @pytest.mark.django_db
-def test_models_in_db():
+def test_models_in_db() -> None:
+    genre = Genre.objects.create(name='Приключения')
+    language = Language.objects.create(name='Русский')
     book = Book.objects.create(
         title='Золотой телёнок',
         isbn='978-5-389-135',
@@ -15,8 +16,8 @@ def test_models_in_db():
                 ' советской жизни начала 1930-х годов, а именно Первой пятилетки.'
                 ' Роман перекликается с рядом произведений русской и зарубежной литературы[⇨].'
                 ' В числе художественных приёмов, используемых соавторами, — гипербола, гротеск, каламбур, пародия.',
-        genre=Genre.objects.create(name='Приключения'),
-        language=Language.objects.create(name='Русский'),
+        genre=genre,
+        language=language,
     )
     author1 = Author.objects.create(
         first_name='Илья',
