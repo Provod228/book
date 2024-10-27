@@ -15,12 +15,6 @@ class BookDetailSerializers(serializers.Serializer):
     summary = serializers.CharField()
     isbn = serializers.CharField()
     language = serializers.CharField()
-    # first_name = serializers.CharField()
-    # last_name = serializers.CharField()
-    # display = serializers.CharField()
-    # imprint = serializers.CharField()
-    # id_bookinstance_set = serializers.IntegerField()
-    # status = serializers.CharField()
 
 
 class BookAuthorDetailSerializers(serializers.Serializer):
