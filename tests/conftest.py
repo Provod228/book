@@ -1,8 +1,14 @@
 import pytest
 
 
+@pytest.fixture
+def api_client():
+   from rest_framework.test import APIClient
+   return APIClient()
+
+
 @pytest.fixture(scope='function')
-def test_url(request) -> str:
+def test_url(request: None) -> str:
     return 'http://127.0.0.1:8000/'
 
 
