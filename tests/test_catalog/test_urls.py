@@ -1,26 +1,19 @@
 import requests
+from requests.exceptions import RequestException
+import pytest
 '''Тестировать при запуске сайта'''
 
 
-def test_index(test_url: str) -> None:
-    url = test_url + 'catalog/'
-    response = str(requests.get(url))
-    assert response == '<Response [200]>'
-
-
-def test_books(test_url: str) -> None:
-    url = test_url + 'catalog/books/'
-    response = str(requests.get(url))
-    assert response == '<Response [200]>'
-
-
-def test_authors(test_url: str) -> None:
-    url = test_url + 'catalog/authors/'
-    response = str(requests.get(url))
-    assert response == '<Response [200]>'
-
-
-def test_login(test_url: str) -> None:
-    url = test_url + 'catalog/accounts/login/'
-    response = str(requests.get(url))
-    assert response == '<Response [200]>'
+@pytest.mark.parametrize("endpoint", [
+    'catalog/',
+    'catalog/books/',
+    'catalog/authors/',
+    'catalog/accounts/login/',
+])
+def test_endpoints(test_url: str, endpoint: str) -> None:
+    url = test_url + endpoint
+    try:
+        response = requests.get(url)
+        assert response.status_code == 200
+    except RequestException as e:
+        assert False, f"Request failed: {e}"
