@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from .models import *
 
 
 class IndexSerializer(serializers.Serializer):
@@ -8,35 +9,38 @@ class IndexSerializer(serializers.Serializer):
     num_author = serializers.IntegerField()
 
 
-class BookDetailSerializers(serializers.Serializer):
-    title = serializers.CharField()
+class BookDetailSerializer(serializers.ModelSerializer):
     genre = serializers.CharField()
-    summary = serializers.CharField()
-    isbn = serializers.CharField()
     language = serializers.CharField()
 
+    class Meta:
+        model = Book
+        fields = ['title', 'genre', 'summary', 'isbn', 'language']
 
-class BookAuthorDetailSerializers(serializers.Serializer):
-    first_name = serializers.CharField()
-    last_name = serializers.CharField()
+
+class BookAuthorDetailSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Author
+        fields = ['first_name', 'last_name']
 
 
-class BookInstanceDetailSerializers(serializers.Serializer):
-    status_display = serializers.DjangoModelField()
-    imprint = serializers.CharField()
-    id = serializers.IntegerField()
+class BookInstanceDetailSerializer(serializers.ModelSerializer):
     status = serializers.CharField()
 
+    class Meta:
+        model = BookInstance
+        fields = ['status', 'id', 'imprint']
 
-class BookListSerializers(serializers.Serializer):
-    id = serializers.IntegerField()
-    title = serializers.CharField()
+
+class BookListSerializer(serializers.ModelSerializer):
     genre = serializers.CharField()
 
+    class Meta:
+        model = Book
+        fields = ['id', 'title', 'genre']
 
-class AuthorListSerializers(serializers.Serializer):
-    first_name = serializers.CharField()
-    last_name = serializers.CharField()
-    data_of_birth = serializers.DateField()
-    data_of_death = serializers.DateField()
 
+class AuthorListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Author
+        fields = ['first_name', 'last_name', 'data_of_birth', 'data_of_death']

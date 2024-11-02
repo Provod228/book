@@ -35,7 +35,7 @@ class BookListView(APIView):
 
     def get(self, request: None) -> Response:
         book_list = Book.objects.all()
-        return Response({'book_list': BookListSerializers(book_list, many=True).data})
+        return Response({'book_list': BookListSerializer(book_list, many=True).data})
 
 
 class BookDetailView(APIView):
@@ -46,10 +46,13 @@ class BookDetailView(APIView):
         book = Book.objects.get(pk=id)
         author = book.author.all()
         book_instance_set = book.bookinstance_set.all()
+        print(book)
+        print(author)
+        print(book_instance_set)
         return Response({
-            'book': BookDetailSerializers(book).data,
-            'authors': BookAuthorDetailSerializers(author, many=True).data,
-            'book_instance_set': BookInstanceDetailSerializers(book_instance_set, many=True).data,
+            'book': BookDetailSerializer(book).data,
+            'authors': BookAuthorDetailSerializer(author, many=True).data,
+            'book_instance_set': BookInstanceDetailSerializer(book_instance_set, many=True).data,
                          })
 
 
@@ -59,5 +62,6 @@ class AuthorListView(APIView):
 
     def get(self, request: None) -> Response:
         author_list = Author.objects.all()
-        return Response({'author_list': AuthorListSerializers(author_list, many=True).data})
+        return Response({'author_list': AuthorListSerializer(author_list, many=True).data})
+
 
