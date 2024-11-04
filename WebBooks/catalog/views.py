@@ -8,7 +8,7 @@ from .serializers import *
 # Create your views here.
 
 
-class Index(APIView):
+class IndexView(APIView):
     renderer_classes = [TemplateHTMLRenderer]
     template_name = 'index.html'
 
@@ -46,9 +46,6 @@ class BookDetailView(APIView):
         book = Book.objects.get(pk=id)
         author = book.author.all()
         book_instance_set = book.bookinstance_set.all()
-        print(book)
-        print(author)
-        print(book_instance_set)
         return Response({
             'book': BookDetailSerializer(book).data,
             'authors': BookAuthorDetailSerializer(author, many=True).data,
@@ -63,5 +60,3 @@ class AuthorListView(APIView):
     def get(self, request: None) -> Response:
         author_list = Author.objects.all()
         return Response({'author_list': AuthorListSerializer(author_list, many=True).data})
-
-
