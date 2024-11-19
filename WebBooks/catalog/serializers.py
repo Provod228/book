@@ -19,6 +19,7 @@ class BookDetailSerializer(serializers.ModelSerializer):
 
 
 class BookAuthorDetailSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = Author
         fields = ['first_name', 'last_name']
@@ -41,6 +42,7 @@ class BookListSerializer(serializers.ModelSerializer):
 
 
 class AuthorListSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = Author
         fields = ['first_name', 'last_name', 'data_of_birth', 'data_of_death']
