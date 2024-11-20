@@ -7,6 +7,21 @@ from django.test import TestCase
 
 
 @pytest.mark.django_db
+class TestMainPageView(TestCase):
+    def setUp(self) -> None:
+        self.client = APIClient()
+
+        print(self.client, "self.client")
+
+    def test_main_page_works(self) -> None:
+        url = reverse('main-page')
+
+        response = self.client.get(url)
+
+        assert response.status_code == 200
+
+
+@pytest.mark.django_db
 class TestIndexAPIView(TestCase):
     def setUp(self) -> None:
         self.client = APIClient()

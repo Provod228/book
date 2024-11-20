@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Встречающая страница "Мира книг"</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    {% block head %}
+        <font size=7, color="blue">Приветсвующая страница сайта "Мир книг"</font>
+    {% endblock %}
+</head>
+<body>
+    <h3><a href="{% url 'catalog:index' %}">Нажми сюда, чтобы перейти на главную страницу</a></h3>
+</body>
+</html>
+<!--Можно ещё что-то добавить в html, но мне лень-->

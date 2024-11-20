@@ -8,6 +8,14 @@ from .serializers import *
 # Create your views here.
 
 
+class MainPageView(APIView):
+    renderer_classes = [TemplateHTMLRenderer]
+    template_name = 'main_page.html'
+
+    def get(self, request: None) -> Response:
+        return Response()
+
+
 class IndexView(APIView):
     renderer_classes = [TemplateHTMLRenderer]
     template_name = 'index.html'

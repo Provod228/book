@@ -5,6 +5,7 @@ import pytest
 
 
 @pytest.mark.parametrize("endpoint", [
+    '',
     'catalog/',
     'catalog/books/',
     'catalog/authors/',
