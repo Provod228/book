@@ -3,6 +3,10 @@ from catalog.models import *
 import datetime
 
 
+def test_model_book() -> None:
+    pass
+
+
 @pytest.mark.django_db
 def test_models_in_db() -> None:
     genre = Genre.objects.create(name='Приключения')

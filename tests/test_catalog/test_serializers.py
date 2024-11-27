@@ -30,3 +30,13 @@ def test_author_list_serializer(test_author_data: dict) -> None:
 def test_book_instance_detail_serializer(test_book_instance_data: dict) -> None:
     serializer = BookInstanceDetailSerializer(data=test_book_instance_data)
     assert serializer.is_valid()
+
+
+# @pytest.mark.parametrize("endpoint", [
+#     [IndexSerializer, test_count_data],
+#     [BookListSerializer, test_book_data],
+#     [BookDetailSerializer, test_book_data],
+#     [BookAuthorDetailSerializer, test_author_data],
+#     [AuthorListSerializer, test_author_data],
+#     [BookInstanceDetailSerializer, test_book_instance_data],
+# ])
