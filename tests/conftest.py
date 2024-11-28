@@ -1,4 +1,42 @@
 import pytest
+from catalog.factories import (
+    GenreFactory,
+    LanguageFactory,
+    AuthorFactory,
+    StatusFactory,
+    BookFactory,
+    BookInstanceFactory,
+)
+
+
+@pytest.fixture(scope='function')
+def test_book_instance_factory() -> BookInstanceFactory:
+    book_instance_create: BookInstanceFactory = BookInstanceFactory.create()
+    return book_instance_create
+
+
+@pytest.fixture(scope='function')
+def test_book_factory() -> BookFactory:
+    book_create: BookFactory = BookFactory.create()
+    return book_create
+
+
+@pytest.fixture(scope='function')
+def test_status_factory() -> StatusFactory:
+    status_create: StatusFactory = StatusFactory.create()
+    return status_create
+
+
+@pytest.fixture(scope='function')
+def test_genre_factory() -> GenreFactory:
+    genre_factory: GenreFactory = GenreFactory.create()
+    return genre_factory
+
+
+@pytest.fixture(scope='function')
+def test_language_factory() -> LanguageFactory:
+    language_factory: LanguageFactory = LanguageFactory.create()
+    return language_factory
 
 
 @pytest.fixture(scope='function')

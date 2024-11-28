@@ -1,6 +1,5 @@
 import factory
 from .models import Book, Genre, Language, Author, Status, BookInstance
-from datetime import UTC
 
 
 class GenreFactory(factory.django.DjangoModelFactory):
@@ -23,8 +22,8 @@ class AuthorFactory(factory.django.DjangoModelFactory):
 
     first_name = factory.Faker("first_name")
     last_name = factory.Faker("last_name")
-    data_of_birth = factory.Faker("date_time", tzinfo=UTC)
-    data_of_death = factory.Faker("date_time", tzinfo=UTC)
+    data_of_birth = factory.Faker("date_time")
+    data_of_death = factory.Faker("date_time")
 
 
 class StatusFactory(factory.django.DjangoModelFactory):
@@ -41,7 +40,7 @@ class BookFactory(factory.django.DjangoModelFactory):
     genre = factory.SubFactory(GenreFactory)
     language = factory.SubFactory(LanguageFactory)
     summary = factory.Faker("paragraph")
-    isbn = factory.Faker("isbn")
+    isbn = factory.Faker("name")
 
     @factory.post_generation
     def author(self, create, extracted, **kwargs):
@@ -56,8 +55,7 @@ class BookInstanceFactory(factory.django.DjangoModelFactory):
         model = BookInstance
 
     book = factory.SubFactory(BookFactory)
-    inv_nom = factory.Faker("inv_nom")
-    imprint = factory.Faker("imprint")
+    inv_nom = factory.Faker('random_int', min=0, max=100)
+    imprint = factory.Faker("company")
     status = factory.SubFactory(StatusFactory)
-    due_back = factory.Faker("date_time", tzinfo=UTC)
-
+    due_back = factory.Faker("date_time")
