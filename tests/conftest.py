@@ -22,6 +22,12 @@ def test_book_factory() -> BookFactory:
 
 
 @pytest.fixture(scope='function')
+def test_author_factory() -> AuthorFactory:
+    author_create: AuthorFactory = AuthorFactory.create()
+    return author_create
+
+
+@pytest.fixture(scope='function')
 def test_status_factory() -> StatusFactory:
     status_create: StatusFactory = StatusFactory.create()
     return status_create
