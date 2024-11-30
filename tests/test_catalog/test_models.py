@@ -9,6 +9,7 @@ from catalog.factories import (
     BookInstanceFactory,
 )
 import datetime
+import factory
 
 
 @pytest.mark.django_db
@@ -23,7 +24,7 @@ def test_model_book_instance(test_book_instance_factory: BookInstanceFactory) ->
     assert type(inv_nom) is int
     assert type(imprint) is str
     assert type(status) is Status
-    assert type(due_back) is datetime
+    assert type(due_back) is datetime.datetime
 
 
 @pytest.mark.django_db
@@ -40,7 +41,41 @@ def test_model_book(test_book_factory: BookFactory) -> None:
     assert type(language) is Language
     assert type(summary) is str
     assert type(isbn) is str
-    assert type(author) is not Author
+    assert type(author) is Author
+
+
+@pytest.mark.django_db
+def test_model_author(test_author_factory: AuthorFactory) -> None:
+    first_name: factory.faker.Faker = AuthorFactory.first_name
+    last_name: factory.faker.Faker = AuthorFactory.last_name
+    data_of_birth: factory.faker.Faker = AuthorFactory.data_of_birth
+    data_of_death: factory.faker.Faker = AuthorFactory.data_of_death
+
+    assert type(first_name) is factory.faker.Faker
+    assert type(last_name) is factory.faker.Faker
+    assert type(data_of_birth) is factory.faker.Faker
+    assert type(data_of_death) is factory.faker.Faker
+
+
+@pytest.mark.django_db
+def test_model_status(test_status_factory: StatusFactory) -> None:
+    name: str = test_status_factory.name
+
+    assert type(name) is str
+
+
+@pytest.mark.django_db
+def test_model_genre(test_genre_factory: GenreFactory) -> None:
+    name: str = test_genre_factory.name
+
+    assert type(name) is str
+
+
+@pytest.mark.django_db
+def test_model_language(test_language_factory: LanguageFactory) -> None:
+    name: str = test_language_factory.name
+
+    assert type(name) is str
 
 
 # @pytest.mark.django_db
