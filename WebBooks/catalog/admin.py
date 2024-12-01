@@ -3,10 +3,6 @@ from .models import Author, Book, Genre, Language, Status, BookInstance
 
 # Register your models here.
 
-# admin.site.register(Author)
-# admin.site.register(Book)
-# admin.site.register(BookInstance)
-
 
 @admin.register(Author)
 class AuthorAdmin(admin.ModelAdmin):
