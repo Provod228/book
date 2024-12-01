@@ -8,5 +8,6 @@ urlpatterns = [
     path('books/', BookListView.as_view(), name='books'),
     path('books/<int:id>', BookDetailView.as_view(), name='book-detail'),
     path('authors/', AuthorListView.as_view(), name='authors'),
-    path('accounts/', include('django.contrib.auth.urls'))
+    path('accounts/signup', UserRegistrationView.as_view(), name='signup'),
+    path('accounts/', include('django.contrib.auth.urls')),
 ]

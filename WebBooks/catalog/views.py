@@ -8,12 +8,22 @@ from .serializers import *
 # Create your views here.
 
 
+class UserRegistrationView(APIView):
+    renderer_classes = [TemplateHTMLRenderer]
+    template_name = 'signup.html'
+
+    def post(self, request: None) -> Response:
+
+        return Response()
+
+
 class MainPageView(APIView):
     renderer_classes = [TemplateHTMLRenderer]
     template_name = 'main_page.html'
 
     def get(self, request: None) -> Response:
         return Response()
+
 
 
 class IndexView(APIView):
