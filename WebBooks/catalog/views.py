@@ -2,8 +2,10 @@ from .models import Book, Author, BookInstance
 from rest_framework.renderers import TemplateHTMLRenderer
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework import status
 from .serializers import *
-
+from django.contrib.auth import login
+from .forms import SignUpForm
 
 # Create your views here.
 
@@ -13,8 +15,8 @@ class UserRegistrationView(APIView):
     template_name = 'signup.html'
 
     def post(self, request: None) -> Response:
-
-        return Response()
+        form = SignUpForm()
+        return Response({'form': form})
 
 
 class MainPageView(APIView):

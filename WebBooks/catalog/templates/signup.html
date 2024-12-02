@@ -2,17 +2,10 @@
 
 {% block content %}
 <p>Нажмите кнопку 'регистрация' для регистрации</p>
-{% csrf_token %}
-    <table>
-      <tr>
-        <td>Имя пользователя:</td>
-        <td>{{ form.username }}</td>
-      </tr>
-      <tr>
-        <td>Пароль:</td>
-        <td>{{ form.password }}</td>
-      </tr>
-    </table>
+<form method="post" action="{% url 'catalog:signup' %}">
+    {% csrf_token %}
+    {{ form }}
     <input type="submit" value="Регистрация" />
     <input type="hidden" name="next" value="{{ next }}" />
+</form>
 {% endblock %}

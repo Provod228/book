@@ -27,6 +27,9 @@
     <input type="submit" value="Вход" />
     <input type="hidden" name="next" value="{{ next }}" />
   </form>
-
+<form method="post" action="{% url 'catalog:signup' %}">
+  {% csrf_token %}
+  <button type="submit">Регистрация, если нет учетной записи</button>
+</form>
   <p><a href="{% url 'catalog:password_reset' %}">Утерян пароль?</a></p>
 {% endblock %}
