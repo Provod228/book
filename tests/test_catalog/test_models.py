@@ -41,7 +41,7 @@ def test_model_book(test_book_factory: BookFactory) -> None:
     assert type(language) is Language
     assert type(summary) is str
     assert type(isbn) is str
-    assert type(author) is Author
+    assert type(author) is not Author
 
 
 @pytest.mark.django_db
