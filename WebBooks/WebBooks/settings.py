@@ -128,7 +128,7 @@ STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# AUTH_USER_MODEL = 'catalog.User' # для будущих регистраций
+# AUTH_USER_MODEL = 'catalog.User'    # для будущих регистраций при создании User
 
 LOGIN_REDIRECT_URL = '/'
 

@@ -1,4 +1,3 @@
-from .models import Book, Author, BookInstance
 from rest_framework.renderers import TemplateHTMLRenderer
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -14,9 +13,14 @@ class UserRegistrationView(APIView):
     renderer_classes = [TemplateHTMLRenderer]
     template_name = 'signup.html'
 
-    def post(self, request: None) -> Response:
-        form = SignUpForm()
-        return Response({'form': form})
+    def post(self, request) -> Response:
+        form = SignUpForm(request.data)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return Response({"message": "Registration successful"}, status=status.HTTP_201_CREATED)
+        else:
+            return Response({'form': form})
 
 
 class MainPageView(APIView):
