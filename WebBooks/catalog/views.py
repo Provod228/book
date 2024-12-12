@@ -31,7 +31,6 @@ class MainPageView(APIView):
         return Response()
 
 
-
 class IndexView(APIView):
     renderer_classes = [TemplateHTMLRenderer]
     template_name = 'index.html'
