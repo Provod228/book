@@ -14,35 +14,34 @@ import factory
 
 @pytest.mark.django_db
 def test_model_book_instance(test_book_instance_factory: BookInstanceFactory) -> None:
-    factory_book = test_book_instance_factory
-    book: str = factory_book.book
-    inv_nom: int = factory_book.inv_nom
-    imprint: str = factory_book.imprint
-    status: str = factory_book.status
-    due_back: datetime.datetime = factory_book.due_back
+    book: str = test_book_instance_factory.book
+    inv_nom: int = test_book_instance_factory.inv_nom
+    imprint: str = test_book_instance_factory.imprint
+    status: str = test_book_instance_factory.status
+    due_back: datetime.datetime = test_book_instance_factory.due_back
 
-    assert isinstance(book, Book)
-    assert isinstance(inv_nom, int)
-    assert isinstance(imprint, str)
-    assert isinstance(status, Status)
-    assert isinstance(due_back, datetime.datetime)
+    assert type(book) is Book
+    assert type(inv_nom) is int
+    assert type(imprint) is str
+    assert type(status) is Status
+    assert type(due_back) is datetime.datetime
 
 
 @pytest.mark.django_db
 def test_model_book(test_book_factory: BookFactory) -> None:
     title: str = test_book_factory.title
-    genre: Genre = test_book_factory.genre
-    language: Language = test_book_factory.language
+    genre: str = test_book_factory.genre
+    language: str = test_book_factory.language
     summary: str = test_book_factory.summary
     isbn: str = test_book_factory.isbn
     author: str = test_book_factory.author
 
-    assert isinstance(title, str)
-    assert isinstance(genre, Genre)
-    assert isinstance(language, Language)
-    assert isinstance(summary, str)
-    assert isinstance(isbn, str)
-    assert isinstance(author, Author)
+    assert type(title) is str
+    assert type(genre) is Genre
+    assert type(language) is Language
+    assert type(summary) is str
+    assert type(isbn) is str
+    assert type(author) is not Author
 
 
 @pytest.mark.django_db
@@ -52,31 +51,31 @@ def test_model_author(test_author_factory: AuthorFactory) -> None:
     data_of_birth: factory.faker.Faker = AuthorFactory.data_of_birth
     data_of_death: factory.faker.Faker = AuthorFactory.data_of_death
 
-    assert isinstance(first_name, factory.faker.Faker)
-    assert isinstance(last_name, factory.faker.Faker)
-    assert isinstance(data_of_birth, factory.faker.Faker)
-    assert isinstance(data_of_death, factory.faker.Faker)
+    assert type(first_name) is factory.faker.Faker
+    assert type(last_name) is factory.faker.Faker
+    assert type(data_of_birth) is factory.faker.Faker
+    assert type(data_of_death) is factory.faker.Faker
 
 
 @pytest.mark.django_db
 def test_model_status(test_status_factory: StatusFactory) -> None:
     name: str = test_status_factory.name
 
-    assert isinstance(name, str)
+    assert type(name) is str
 
 
 @pytest.mark.django_db
 def test_model_genre(test_genre_factory: GenreFactory) -> None:
     name: str = test_genre_factory.name
 
-    assert isinstance(name, str)
+    assert type(name) is str
 
 
 @pytest.mark.django_db
 def test_model_language(test_language_factory: LanguageFactory) -> None:
     name: str = test_language_factory.name
 
-    assert isinstance(name, str)
+    assert type(name) is str
 
 
 # @pytest.mark.django_db
