@@ -1,3 +1,4 @@
+import random
 import factory
 from .models import Book, Genre, Language, Author, Status, BookInstance
 
@@ -36,11 +37,13 @@ class StatusFactory(factory.django.DjangoModelFactory):
 class BookFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = Book
+
     title = factory.Faker("sentence")
     genre = factory.SubFactory(GenreFactory)
     language = factory.SubFactory(LanguageFactory)
     summary = factory.Faker("paragraph")
-    isbn = factory.Faker("name")
+    isbn = str(random.randint(1000000000000, 9999999999999))
+    #  author = [AuthorFactory.create() for _ in range(random.randint(1, 5))]
 
     @factory.post_generation
     def author(self, create, extracted, **kwargs):

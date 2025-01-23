@@ -17,7 +17,9 @@ def test_book_instance_factory() -> BookInstanceFactory:
 
 @pytest.fixture(scope='function')
 def test_book_factory() -> BookFactory:
-    book_create: BookFactory = BookFactory.create()
+    author1: AuthorFactory = AuthorFactory.create()
+    author2: AuthorFactory = AuthorFactory.create()
+    book_create: BookFactory = BookFactory.create(author__=[author1, author2])
     return book_create
 
 
