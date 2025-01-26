@@ -15,4 +15,8 @@
     {% else %}
       <p>В базе данных нет книг</p>
     {% endif %}
+<form method="get" action="{% url 'catalog:book_add' %}">
+    {% csrf_token %}
+    <button type="submit">Добавить новой книги</button>
+</form>
 {% endblock %}

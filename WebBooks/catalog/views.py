@@ -1,10 +1,11 @@
 from rest_framework.renderers import TemplateHTMLRenderer
+from django.shortcuts import redirect
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework import status
 from .serializers import *
 from django.contrib.auth import login
-from .forms import SignUpForm
+from .forms import SignUpForm, AuthorForm, BookForm
+from django.urls import reverse
 
 # Create your views here.
 
@@ -13,12 +14,50 @@ class UserRegistrationView(APIView):
     renderer_classes = [TemplateHTMLRenderer]
     template_name = 'signup.html'
 
+    def get(self, request):
+        form = SignUpForm()
+        return Response({'form': form})
+
     def post(self, request) -> Response:
         form = SignUpForm(request.data)
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return Response({"message": "Registration successful"}, status=status.HTTP_201_CREATED)
+            return redirect(reverse('catalog:index'))
+        else:
+            return Response({'form': form})
+
+
+class AuthorAddView(APIView):
+    renderer_classes = [TemplateHTMLRenderer]
+    template_name = 'author_add.html'
+
+    def get(self, request):
+        form = AuthorForm()
+        return Response({'form': form})
+
+    def post(self, request) -> Response:
+        form = AuthorForm(request.data)
+        if form.is_valid():
+            form.save()
+            return redirect(reverse('catalog:index'))
+        else:
+            return Response({'form': form})
+
+
+class BookAddView(APIView):
+    renderer_classes = [TemplateHTMLRenderer]
+    template_name = 'book_add.html'
+
+    def get(self, request):
+        form = BookForm()
+        return Response({'form': form})
+
+    def post(self, request) -> Response:
+        form = BookForm(request.data)
+        if form.is_valid():
+            form.save()
+            return redirect(reverse('catalog:index'))
         else:
             return Response({'form': form})
 
