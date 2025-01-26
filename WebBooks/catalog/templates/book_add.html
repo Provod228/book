@@ -1,0 +1,10 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<p>Нажмите кнопку 'Добавить' для добавления книги</p>
+<form method="post" action="{% url 'catalog:book_add' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Добавить" />
+</form>
+{% endblock %}
