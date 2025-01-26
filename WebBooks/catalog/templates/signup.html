@@ -1,7 +1,7 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-<p>Нажмите кнопку 'регистрация' для регистрации</p>
+<p>Нажмите кнопку 'регистрация' для регистрации пользователя</p>
 <form method="post" action="{% url 'catalog:signup' %}">
     {% csrf_token %}
     {{ form }}
